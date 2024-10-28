@@ -3,6 +3,8 @@
 all: setup \
 	pull-singularity \
 	build-singularity \
+	pull-docker \
+	build-docker \
 	build-conda \
 	list-all
 
@@ -11,23 +13,27 @@ setup:
 	mkdir -p singularity singularity-def
 	mkdir -p docker docker-files
 	mkdir -p conda conda-yaml
+	mkdir -p resources
 
-pull-singularity:
+pull-singularity: scripts/pull-singularity.sh resources/singularity-urls.txt
 	@echo "Pulling the singularity images"
-	singularity pull --name singularity/bcftools.1.9.sif https://depot.galaxyproject.org/singularity/bcftools%3A1.9--ha228f0b_4
+	sh scripts/pull-singularity.sh
 
-build-singularity:
+build-singularity: scripts/build-singularity.sh resources/docker-urls.txt docker/*.tar
 	@echo "Building the singularity images"
-	singularity build singularity/bcftools_from_docker.sif docker-archive:docker/bcftools.tar
-	singularity build singularity/bcftools_from_dockerhub.sif docker://dockerbiotools/bcftools
+	sh scripts/build-singularity.sh
 
-build-docker:
+pull-docker: scripts/pull-docker.sh resources/docker-urls.txt
+	@echo "Pulling the docker images"
+	sh scripts/pull-docker.sh
+
+build-docker: scripts/build-docker.sh docker-files/*/Dockerfile
 	@echo "Building the docker images"
-	docker build -t bcftools docker-files/bcftools
+	sh scripts/build-docker.sh
 
-build-conda:
+build-conda: scripts/build-conda.sh conda-yaml/*.yaml
 	@echo "Building the conda environments"
-	conda env create -f conda-yaml/bcftools.yaml --prefix conda/bcftools
+	sh scripts/build-conda.sh
 
 list-all:
 	@echo "Listing all the images in 'available-images-environments.txt'"

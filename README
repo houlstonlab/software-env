@@ -7,6 +7,8 @@ The directory is structured, as follows
 - available-images-environments.txt: list of available images
 - singularity/, docker/, conda/: contain the actual images and envrionment
 - singularity-def, docker-files, conda-yaml: contain recipies to create new ones
+- resources: contain urls to online registries
+- scripts/: contain scripts to pull and build images
 - Makefile includes targets
     - Setting up directories
     - Pulling from online registries
@@ -21,10 +23,14 @@ make
 # Run specific target
 make pull-singularity
 
-To add a new image/environment to the cache add a new line to the target and
-rerun it. If the image builds from a local recipie, add the Dockerfile, .def or
-.yaml to the corresponding directory. list-all target should be exucuted last to
-update the list of available images and environments.
+To add a new image/environment to the cache
+
+- Local recipie: add a Dockerfile, .def or .yaml to the corresponding directory
+- Online registry: add a new line to resources/*-urls.txt and rerun it
+- Convert local images: singularity images are created docker/*.tar
+
+list-all target should be exucuted last to update the list of available images 
+and environments.
 
 Using this directory as a centeral cache depends on the tool being used. For
 example, in the case of Nextflow pipelines, add the path to the relevant cache 

@@ -1,3 +1,6 @@
-conda/bcftools
-docker/bcftools.tar
+conda/bcftools.1.9
+docker/bcftools.latest.tar
+docker/bcftools:1.9.tar
+singularity/bcftools.1.16.sif
 singularity/bcftools.1.9.sif
+singularity/bcftools.latest.sif

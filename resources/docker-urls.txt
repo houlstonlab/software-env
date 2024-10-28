@@ -1,0 +1,2 @@
+name,revision,url
+bcftools,latest,dockerbiotools/bcftools

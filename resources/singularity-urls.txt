@@ -1,0 +1,3 @@
+name,revision,url
+bcftools,1.9,https://depot.galaxyproject.org/singularity/bcftools%3A1.9--ha228f0b_4
+bcftools,1.16,https://depot.galaxyproject.org/singularity/bcftools%3A1.16--hfe4b78e_0

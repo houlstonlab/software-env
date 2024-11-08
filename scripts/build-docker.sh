@@ -7,6 +7,6 @@ for df in docker-files/*; do
 
 	# Create the docker environment
 	docker build -t ${name} docker-files/${name}
-	docker save -o docker/${name}.tar ${name}
+	docker save -o ${DOCKER_CACHEDIR}/${name}.tar ${name}
 done
 	

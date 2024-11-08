@@ -1,16 +1,14 @@
-This repo automates the setup and management of various environments and 
-images for bioinformatics tools. This is intended to be used as central cache of
+This repo automates management of various environments and containers for
+bioinformatics tools. This is intended to be used as central cache of 
 images/environments and the recipies to create them.
 
 The directory is structured, as follows
 
 - available-images-environments.txt: list of available images
-- singularity/, docker/, conda/: contain the actual images and envrionment
 - singularity-def, docker-files, conda-yaml: contain recipies to create new ones
 - resources: contain urls to online registries
 - scripts/: contain scripts to pull and build images
 - Makefile includes targets
-    - Setting up directories
     - Pulling from online registries
     - Building from local recipies
     - Listing images/environments in the cache
@@ -20,14 +18,17 @@ To use this repo, run
 # Run all targets
 make
 
+# Run all target for a specific type of container
+make singularity
+
 # Run specific target
 make pull-singularity
 
-To add a new image/environment to the cache
+To add a new container/environment to the cache
 
 - Local recipie: add a Dockerfile, .def or .yaml to the corresponding directory
 - Online registry: add a new line to resources/*-urls.txt and rerun it
-- Convert local images: singularity images are created docker/*.tar
+- nf-core: Download images for nf-core pipelines
 
 list-all target should be exucuted last to update the list of available images 
 and environments.
@@ -54,5 +55,7 @@ process dothat {
 
 NOTES:
 - docker would need to be ran on local machines
-- singularity requires a root user to be able to build from a .def
 - nf-core would need to be installed first
+- The scripts expect a default directory to be set for the cahces
+SINGULARITY_CACHEDIR, DOCKER_CACHEDIR, and CONDA_CACHEDIR otherwise they will be
+created as subdirectorie in the current working directory.

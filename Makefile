@@ -1,40 +1,49 @@
 #!/bin/bash
 
-all: setup \
-	pull-singularity \
-	build-singularity \
-	pull-docker \
-	build-docker \
-	build-conda \
-	list-all
+singularity: pull-singularity \
+	download-singularity \
+	build-singularity
 
-setup:
-	@echo "Setting up the directories"
-	mkdir -p singularity singularity-def
-	mkdir -p docker docker-files
-	mkdir -p conda conda-yaml
-	mkdir -p resources
+docker: pull-docker \
+	build-docker
 
-pull-singularity: scripts/pull-singularity.sh resources/singularity-urls.txt
+conda: build-conda
+
+check:
+	@[ -z "${SINGULARITY_CACHEDIR}" ] && mkdir -p singularity && export SINGULARITY_CACHEDIR=singularity && echo "SINGULARITY_CACHEDIR is set to singularity" || echo "SINGULARITY_CACHEDIR is defined as ${SINGULARITY_CACHEDIR}"
+	@[ -z "${DOCKER_CACHEDIR}" ] && mkdir -p docker && export DOCKER_CACHEDIR=docker && echo "DOCKER_CACHEDIR is set to docker" || echo "DOCKER_CACHEDIR is defined as ${DOCKER_CACHEDIR}"
+	@[ -z "${CONDA_CACHEDIR}" ] && mkdir -p conda && export CONDA_CACHEDIR=conda && echo "CONDA_CACHEDIR is set to conda" || echo "CONDA_CACHEDIR is defined as ${CONDA_CACHEDIR}"
+
+pull-singularity: scripts/pull-singularity.sh \
+	resources/singularity-urls.txt
 	@echo "Pulling the singularity images"
 	sh scripts/pull-singularity.sh
 
-build-singularity: scripts/build-singularity.sh resources/docker-urls.txt docker/*.tar
+download-singularity: scripts/download-singularity.sh \
+	resources/nfcore-pipelines.txt
+	@echo "Download nfcore pipelines singularity images"
+	sh scripts/download-singularity.sh
+
+build-singularity: scripts/build-singularity.sh \
+	singularity-def/*.def
 	@echo "Building the singularity images"
 	sh scripts/build-singularity.sh
 
-pull-docker: scripts/pull-docker.sh resources/docker-urls.txt
+pull-docker: scripts/pull-docker.sh \
+	resources/docker-urls.txt
 	@echo "Pulling the docker images"
 	sh scripts/pull-docker.sh
 
-build-docker: scripts/build-docker.sh docker-files/*/Dockerfile
+build-docker: scripts/build-docker.sh \
+	docker-files/*/Dockerfile
 	@echo "Building the docker images"
 	sh scripts/build-docker.sh
 
-build-conda: scripts/build-conda.sh conda-yaml/*.yaml
+build-conda: scripts/build-conda.sh \
+	conda-yaml/*.yaml
 	@echo "Building the conda environments"
 	sh scripts/build-conda.sh
 
 list-all:
 	@echo "Listing all the images in 'available-images-environments.txt'"
-	ls -d {singularity,docker,conda}/* | sort > available-images-environments.txt
+	ls -d ${SCRATCH}/software-env/* | sort > available-images-environments.txt

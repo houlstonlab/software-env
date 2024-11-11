@@ -10,5 +10,5 @@ while IFS=',' read -r -a values; do
 
 	# Pull the docker containers
     docker pull ${url}:${revision}
-	docker save ${url}:${revision} > docker/${name}.${revision}.tar
+	docker save ${url}:${revision} > ${DOCKER_CACHEDIR}/${name}.${revision}.tar
 done

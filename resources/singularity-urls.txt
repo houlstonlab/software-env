@@ -3,3 +3,4 @@ bcftools,1.9,https://depot.galaxyproject.org/singularity/bcftools%3A1.9--ha228f0
 bcftools,1.16,https://depot.galaxyproject.org/singularity/bcftools%3A1.16--hfe4b78e_0
 bioconductor,3.19,docker://mahshaaban/bioconductor:3.19
 rvs,0.1,docker://mahshaaban/rvs:0.1
+plink,1.9.0,https://depot.galaxyproject.org/singularity/plink%3A1.90b6.21--hec16e2b_4

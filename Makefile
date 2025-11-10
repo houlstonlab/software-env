@@ -46,4 +46,4 @@ build-conda: scripts/build-conda.sh \
 
 list-all:
 	@echo "Listing all the images in 'available-images-environments.txt'"
-	ls -d ${SCRATCH}/software-env/* | sort > available-images-environments.txt
+	ls -d ${SCRATCH}/software-env/{conda,docker,singularity}/* | sort > available-images-environments.txt

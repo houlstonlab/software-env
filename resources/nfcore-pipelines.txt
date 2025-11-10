@@ -1,2 +1,4 @@
 name,revision,url
+demultiplex,1.6.0,https://nf-co.re/demultiplex/1.6.0
 sarek,3.2.3,https://nf-co.re/sarek/3.2.3
+rnaseq,3.20.0,https://nf-co.re/rnaseq/3.20.0

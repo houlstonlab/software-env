@@ -4,3 +4,16 @@ bcftools,1.16,https://depot.galaxyproject.org/singularity/bcftools%3A1.16--hfe4b
 bioconductor,3.19,docker://mahshaaban/bioconductor:3.19
 rvs,0.1,docker://mahshaaban/rvs:0.1
 plink,1.9.0,https://depot.galaxyproject.org/singularity/plink%3A1.90b6.21--hec16e2b_4
+mmsplice,2.0,docker://headoncollusion/mmsplice:v2.0
+splicerover,0.1,docker://jasperzuallaert/splicerover:latest
+dssp,3.0.0,docker://biocontainers/dssp:v3.0.0-3b1-deb_cv1
+pangolin,1.0.1,docker://cmgantwerpen/pangolin:1.0.1-cuda-12.4
+penncnv,1.0.5,docker://mahshaaban/penncnv:1.0.5
+penncnv,18.10.2023,docker://mbaardwijk/penncnv:18-10-2023
+quantisnp,19.10.2023,docker://mbaardwijk/quantisnp:19-10-2023
+ipattern,16.11.2023,docker://mbaardwijk/ipattern:16-11-2023
+rgada,19.10.2023,docker://mbaardwijk/rgada:19-10-2023
+ensemblecnv,27.03.2024,docker://mbaardwijk/ensemblecnv:27-03-2024
+acnvbench,16.11.2023,docker://mbaardwijk/acnvbench:16-11-2023
+matrixeqtl,2.1.1,https://depot.galaxyproject.org/singularity/r-matrixeqtl%3A2.1.1--r3.4.1_0
+jloh,v0.1,docker://mahshaaban/jloh:v0.1

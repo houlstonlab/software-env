@@ -1,0 +1,33 @@
+Bootstrap: docker
+From: continuumio/miniconda3:latest
+
+%labels
+    Author mahmed03
+    Version v1
+
+%post
+    # Use bash for the post section
+    SHELL=/bin/bash
+
+    # Install system dependencies
+    apt-get update && apt-get install -y \
+        build-essential \
+        tabix \
+        wget \
+        git \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Create and activate conda environment
+    conda create -y -n alphagenome-env python=3.10
+    . /opt/conda/etc/profile.d/conda.sh
+    conda activate alphagenome-env
+
+    # Install Python packages
+    pip install alphagenome pandas tqdm pysam
+
+%environment
+    export PATH=/opt/conda/envs/alphagenome-env/bin:$PATH
+    export CONDA_DEFAULT_ENV=alphagenome-env
+
+%runscript
+    exec "$@"

@@ -1,0 +1,20 @@
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:RELEASE_3_19
+
+%post
+    # Update package list and install dependencies
+    apt-get update && apt-get install -y \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libxml2-dev \
+        libatlas-base-dev
+
+    # Install R package 'VariantAnnotation'
+    R -e "BiocManager::install('VariantAnnotation')"
+
+%labels
+    Maintainer Mahmoud Ahmed
+    Version 3.19
+
+%help
+    This Singularity image is based on the Docker Hub image 'bioconductor/bioconductor_docker' and includes the R package 'TxDb.Hsapiens.UCSC.hg38.knownGene'.

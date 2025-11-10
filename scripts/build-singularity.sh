@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#SBATCH -J build-singularity
+#SBATCH -o build-singularity.out
+#SBATCH -e build-singularity.err
+#SBATCH -p compute
+#SBATCH -t 12:00:00
+#SBATCH -c 2
+
 # Build from local recipe
 # Loop over singularity-def directory
 for def in singularity-def/*.def; do

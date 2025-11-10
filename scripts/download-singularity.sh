@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# Download nf-core pipelines
+#SBATCH -J download-singularity
+#SBATCH -o download-singularity.out
+#SBATCH -e download-singularity.err
+#SBATCH -p compute
+#SBATCH -t 12:00:00
+#SBATCH -c 2
+
 # Install nextflow (Run once)
 module load java/jdk15.0.1
 python3 -m venv venv
@@ -21,6 +27,7 @@ while IFS=',' read -r -a values; do
 		${name} -r ${revision} \
 		-s singularity \
 		-d 10 -x none -u copy \
-		-o tmp
+		-o tmp \
+		--force
 	rm -rf tmp 
 done

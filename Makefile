@@ -17,17 +17,17 @@ check:
 pull-singularity: scripts/pull-singularity.sh \
 	resources/singularity-urls.txt
 	@echo "Pulling the singularity images"
-	sh scripts/pull-singularity.sh
+	sbatch scripts/pull-singularity.sh
 
 download-singularity: scripts/download-singularity.sh \
 	resources/nfcore-pipelines.txt
 	@echo "Download nfcore pipelines singularity images"
-	sh scripts/download-singularity.sh
+	sbatch scripts/download-singularity.sh
 
 build-singularity: scripts/build-singularity.sh \
 	singularity-def/*.def
 	@echo "Building the singularity images"
-	sh scripts/build-singularity.sh
+	sbatch scripts/build-singularity.sh
 
 pull-docker: scripts/pull-docker.sh \
 	resources/docker-urls.txt

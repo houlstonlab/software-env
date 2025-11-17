@@ -25,7 +25,7 @@ download-singularity: scripts/download-singularity.sh \
 	sbatch scripts/download-singularity.sh
 
 build-singularity: scripts/build-singularity.sh \
-	singularity-def/*.def
+	singularity-def/*/*.def
 	@echo "Building the singularity images"
 	sbatch scripts/build-singularity.sh
 

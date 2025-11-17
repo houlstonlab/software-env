@@ -4,3 +4,6 @@
 [submodule "singularity-def"]
 	path = singularity-def
 	url = git@github.com:houlstonlab/singularity-def.git
+[submodule "conda-env"]
+	path = conda-env
+	url = git@github.com:houlstonlab/conda-env.git

@@ -40,7 +40,7 @@ build-docker: scripts/build-docker.sh \
 	sh scripts/build-docker.sh
 
 build-conda: scripts/build-conda.sh \
-	conda-yaml/*.yaml
+	conda-env/*/*.yaml
 	@echo "Building the conda environments"
 	sh scripts/build-conda.sh
 

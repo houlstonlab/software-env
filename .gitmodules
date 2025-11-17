@@ -1,3 +1,6 @@
 [submodule "docker-files"]
 	path = docker-files
 	url = git@github.com:houlstonlab/docker-files.git
+[submodule "singularity-def"]
+	path = singularity-def
+	url = git@github.com:houlstonlab/singularity-def.git
